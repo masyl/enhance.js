@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="styles/main.css" rel="stylesheet" />
+		<script src="libs/jquery-1.4.4-min.js"></script>
+		<script src="src/enhance.js"></script>
+		<script src="src/sample.js"></script>
+		<title>Enhance Javascript Library</title>
+		<script id="sampleContent" type="text/html">
+			This is some new content and ...
+			<div class="isMoving">
+				this might also move!!!
+			</div>
+		</script>
+	</head>
+	<body>
+		<div class="page">
+			<div class="sidebar">
+				<div class="navigation">
+					<ul>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Usage</a></li>
+						<li><a href="#">Download</a></li>
+						<li><a href="#">Contribute</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="page-content">
+				<div class="header">
+					<div class="logo"></div>
+				</div>
+				<h1>About Enhance.js</h1>
+
+				<p>
+					<em>Enhance.js</em> is a lightweight javascript utility that helps you organize
+					your code to take advantages of the <strong>progressive enhancement</strong> approach.
+				</p>
+				<p>Here is a basic example:</p>
+				<div class="sample-code"
+>
+// declare an enhancement
+$.enhance(enhanceTooltips, {
+	title: "Adding tooltips to links with titles."
+});
+// code the enhancement
+function enhanceTooltips() {
+	// some fancy javascript goes here
+}
+// then apply all declared enhancements when ready
+$(function(){
+	$(document).enhance();
+});
+</div>
+				<p>
+					By using <em>enhance.js</em> you gain:
+				</p>
+				<ul>
+					<li>Better code structure and readability</li>
+					<li>Re-apply all enhancements to new page content (ajax/dhtml)</li>
+					<li>Automatic logging and timing for optimization</li>
+					<li>Failed enhancement cant break the whole site</li>
+					<li>Failures are logged appropriatly for debugging</li>
+				</ul>
+
+				<h2>Better code structure and readability</h2>
+				<p>
+					Atfer multiple updates by multiple developers, a "main.js" file often become a
+					tangled mess that is composed of the various coding styles of each developers.
+					Because some upates are done in a hurry, you might even have undocumented behaviors
+					that you must "guess" by ready the code.
+				</p>
+				<p>
+					By wrapping each page enhancements in logical blocks and calling them using enhance.js, you
+					get a clearer pattern that each developers can follow. And since this pattern includes the
+					use of a title for each enhancement, it forces an minimum level of code documentation.
+				</p>
+
+				<h2>Re-apply all enhancements to new page content (ajax/dhtml)</h2>
+				<p>
+					Usually, all the bells and whistles you add to your site will be initialised once at the
+					page load by attaching themselves on markup that has a specific class. Then problem is
+					that any new content added to the page afterward using ajax or dhtml might not work properly
+					since it skipped initialisation.
+				</p>
+				<p>
+					If you know exactly when content is loaded, you can manually re-apply the initialization, but often
+					you dont know for sure what has been added. For example, a plugin that adds a tooltip on external links
+					might not be applied to a series of comments that have been loaded in ajax.
+				</p>
+				<p>
+					By using enhance.js, enhancements are remembered and can all be re-applied in a single call. Also,
+					your able to r-apply enhancements only on the new blocks of content, thus making the process a lot faster.
+				</p>
+
+				<h2>Automatic logging and timing for optimization</h2>
+				<p>
+					As you add all sorts of plugins and gizmos to a site, you might realize that the typical page
+					feels suddenly sluggish. If you have a dozen enhancements that get initialized it becomes very hard
+					to figure out which is slow and where you gat optimize things.
+				</p>
+				<p>
+					With enhance.js, each enhancement is logged to the console and reports how much millisecons it took
+					to apply. This shows you preciselly where your optimization should be applied. Also, it makes it
+					very easy to change the loading sequence of each enhancements so that some of them would "look" better if
+					they are applied first, and others might be loaded at the end without any perceived difference.
+				</p>
+
+				<h2>Failed enhancement cant break the whole site</h2>
+				<p>
+					If you have been coding javascript for a while, your probably familiar with
+					the problem of having "one small bug" mess up a whole page. This is because a thrown exception
+					will stop whatever procedure or event loop that was being executed. In other words, an early error
+					inside your main "initialize" loop will prevent all following scripts from running.
+				</p>
+				<p>
+					By using enhance.js you basically "plan for failure". By "managing" the execution of each enhancement,
+					enhance.js traps each failure and logs them using the console instead of letting the exception occur.
+					Normal users will not see any error messages, but a developer with
+					a browser console enabled will see a comprehensive error message with the original exeption that was
+					thrown.
+				</p>
+				<p>
+					And since the error that is logged in the console contains the descriptive title used
+					when declaring each enhancement, it makes it easy for other communicate relevant error messages
+					back to the development team, instead of cryptic system jargon and often irrelevant line numbers.
+				</p>
+				<p>
+					For example, you get this message:
+				</p>
+				<div class="sample-output">
+					> Failed while: Adding tooltips to links with titles.
+				</div>
+				<p>
+					Instead of the usual such as:
+				</p>
+				<div class="sample-output">
+					> TypeError: tt.bt is undefined at line 1
+				</div>
+
+
+				<h1>Sample</h1>
+				<div class="sample-output">
+					
+					<div class="isMoving">
+						this element is moving in a very weird way!
+					</div>
+					<div id="newContent">
+						<!-- content will be added here in dhtml -->
+					</div>
+					<button id="btnAddContent">Add New Content</button>
+				</div>
+
+
+
+			</div>
+		</div>
+		
+	</body>
+</html>
