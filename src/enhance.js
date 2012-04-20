@@ -3,7 +3,8 @@
  * Modified By: Michel Gratton - michel.gratton@nurun.com, michel.gratton@nadrox.com
  * 				Billy Rancourt - billy.rancourt@nurun.com
  * 				Alexandre Paquette - alexandre.paquette@nurun.com, alexandre.paquette@nadrox.com
- * Modified Date : October 13, 2011
+ *				Anthony Bucci - anthony.bucci@nurun.com
+ * Modified Date : April 20, 2012
 	Enhance.js
 
 	A javascript library for progressive enhancement
@@ -20,7 +21,8 @@
 			// some code here...
 		}, {
 			id: "ajaxPagingBehavior",
-			title: "adding ajax behavior on paging"
+			title: "adding ajax behavior on paging",
+			group: "ajaxEnhancements"
 		});
 
 	Upcomming features:
@@ -32,7 +34,12 @@
 * October 13, 2011 Update - AP
 * Added "elems" attribute of the enhancement object which is an array of the 
 * elements where the same data-enhance attribute is applied.
-* Also enhanced elements are flagged so the same enchancement is not runned twice
+* Also enhanced elements are flagged so the same enchancement is not run twice (modified the flag)
+*
+* April 20, 2012 Update - AB
+* changed flag for applied enhancements
+* some refactoring
+* added some documentation
  */
 
 (function($) {
@@ -44,7 +51,8 @@
 		enhanceCnt = 0, // Use for auto id
 		enhOptions = {
 			"class" : "enhance", // default className selector 
-			"dataHandler" : "enhance" // default data attribute [data-enhance]
+			"dataHandler" : "enhance", // default data attribute [data-enhance]
+			"appliedMarkerPrefix" : "isEnhanced-"
 		};
 
 
@@ -59,41 +67,54 @@
 	};
 	
 	function applyEnhancements() {
+		
 		var target = this,
 			_enG = enhancementGroups,
 			elems,
 			execGroups = {},
 			enhs = {};
 		
-		//console.log(elems);
+		// Check if the target or one of its decendents has the enhance trigger class
+		// Ex: in $(document).enhance(); "$(document)" is the target.
 		if (target.hasClass(enhOptions["class"])) {
 			elems = target;
 			elems.add(target.find('.'+enhOptions["class"]));
 		} else {
 			elems = target.find('.'+enhOptions["class"]);
 		}
-		
-		$.each(elems, function(index,value) {
+
+		$.each(elems, function(index, value) {
 			var g, i, eni;
 			g = getGroupeContext($(this).data(enhOptions.dataHandler) || "");
-			if(g) {
-				for(i=0;g[i];i++){
+
+			if (g) {
+				console.log('g:', g);
+
+				for(i=0; g[i]; i++){
+
 					if(typeof _enG[g[i]] !== "undefined" ) {
 						execGroups[g[i]]=g[i];
-						for(eni=0;_enG[g[i]][eni];eni++) {
+
+						for (eni=0; _enG[g[i]][eni]; eni++) {
 							
-							if(!enhs[_enG[g[i]][eni].id]) {
-								enhs[_enG[g[i]][eni].id] = _enG[g[i]][eni] ;
+							if(!enhs[ _enG[g[i]][eni].id ]) {
+								enhs[ _enG[g[i]][eni].id ] = _enG[g[i]][eni] ;
 								//reset previously added elements in global scope
-								enhs[_enG[g[i]][eni].id].elems = [];
+								enhs[ _enG[g[i]][eni].id ].elems = [];
+//								console.log('a', _enG[g[i]][eni].id);
 							}
 							
-							if (!!!$(value).data("enhance-"+ _enG[g[i]][eni].id + "-applied")){
+							if (!!!$(value).data(enhOptions["appliedMarkerPrefix"] + _enG[g[i]][eni].id)){
 								enhs[_enG[g[i]][eni].id].elems.push(value);
+//								console.log('b', _enG[g[i]][eni].id);
 							}
 						}
+					} else {
+						console.log('No enhancement "' + g[i] + '"  found.', $(this));
 					}
 				}
+			} else {
+				console.log('No enhancement specified.', $(this));
 			}
 		});
 
@@ -107,10 +128,11 @@
 		$.each(enhs, function() {
 			var id = (this.id !== null) ? "#" + this.id + ": " : "",
 				desc = "Enhanced: " + id + this.title;
-			if (hasConsoleTime) console.time(desc);
+
+			if (hasConsoleTime) { console.time(desc) };
 			try {
-				$(this.elems).data("enhance-"+ this.id + "-applied", true);
-				$(this.elems).addClass("enhance-"+ this.id + "-applied");
+				$(this.elems).data(enhOptions["appliedMarkerPrefix"] + this.id, true);
+				$(this.elems).addClass(enhOptions["appliedMarkerPrefix"] + this.id);
 				this.handler(target);
 
 			} catch(e) {
@@ -123,7 +145,7 @@
 					});
 				}
 			}
-			if (hasConsoleTime) console.timeEnd(desc, this, target);
+			if (hasConsoleTime) { console.timeEnd(desc, this, target) };
 		});
 		return this;
 	}
