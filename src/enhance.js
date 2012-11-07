@@ -1,9 +1,13 @@
- /* Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
- * Date : 2010
- * Modified By: Michel Gratton - michel.gratton@nurun.com, michel.gratton@nadrox.com
- * 				Billy Rancourt - billy.rancourt@nurun.com
- * 				Alexandre Paquette - alexandre.paquette@nurun.com, alexandre.paquette@nadrox.com
- * Modified Date : October 13, 2011
+/* 
+* Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
+* Date : 2010
+* Modified By: Michel Gratton - michel.gratton@nurun.com, michel.gratton@nadrox.com
+* 				Billy Rancourt - billy.rancourt@nurun.com
+* 				Alexandre Paquette - alexandre.paquette@nurun.com, alexandre.paquette@nadrox.com
+*				Anthony Bucci - anthony.bucci@nurun.com
+* 				Etienne Dion - etienne.dion@nurun.com
+*
+* Modified Date : November 7, 2012
 	Enhance.js
 
 	A javascript library for progressive enhancement
@@ -15,7 +19,7 @@
 		 // Apply all enhancements to a specific part of the page (after ajax or dhtml)
  		jQuery("#pageSection1").enhance();
 
-		// Register a new enhancement
+		// Register a new enhancement by id
 		jQuery.enhance(function (targets) {
 			// some code here...
 		}, {
@@ -23,138 +27,277 @@
 			title: "adding ajax behavior on paging"
 		});
 
-	Upcomming features:
-	- Provide a callback for when enhancement are complete
-	- Specify which enhancement to apply by ID
-	- Specify which enhancement to apply by Tag/Set
-	- Specify a method to test if requirements are met
+		// Register a new enhancement by group
+		jQuery.enhance(function (targets) {
+			// some code here...
+		}, {
+			id: "ajaxPagingBehavior",
+			title: "adding ajax behavior on paging"
+			group: "ajax"
+		});
+
+
+Upcomming features:
+- Provide a callback for when enhancement are complete
+- Specify a method to test if requirements are met
 
 * October 13, 2011 Update - AP
 * Added "elems" attribute of the enhancement object which is an array of the 
 * elements where the same data-enhance attribute is applied.
 * Also enhanced elements are flagged so the same enchancement is not runned twice
- */
+*  
+* November 7, 2012 Update
+* -enhancing by group or | and by id
+* -Prevent rehancement on already enhanced elements
+* -Console log for already enhanced elements 
+* -Option to change the 'enhance' class name to prevent conflict with other enhancing tools
+* -grouped log to clean the console
+* -Fix on the lost of context for the element enhanced
+* -Refactoring
+*
+*/
 
-(function($) {
+(function($) { 
 	var hasConsole = typeof console !== "undefined",
 		hasConsoleTime = hasConsole && typeof console.time !== "undefined",
 		enhancements = [],
+		enhancementsById = {},
 		enhancementGroups = {global:[]},
 		enhanceCnt = 0, // Use for auto id
+		counter = 0,
+		errors = 0,
 		enhOptions = {
 			"class" : "enhance", // default className selector 
-			"dataHandler" : "enhance" // default data attribute [data-enhance]
+			"dataHandler" : "enhance", // default data attribute [data-enhance]
+			"isEnhancedFlag" : "isEnhance", // default data attribute [data-enhance]
+			"appliedMarkerPrefix" : "isEnhanced-"
 		};
-
+		
 
 	if (!hasConsole){
 		console = {assert:function(){},clear:function(){},count:function(){},debug:function(){},dir:function(){},dirxml:function(){},error:function(){},exception:function(){},group:function(){},groupCollapsed:function(){},groupEnd:function(){},info:function(){},log:function(){},memoryProfile:function(){},memoryProfileEnd:function(){},profile:function(){},profileEnd:function(){},table:function(){},time:function(){},timeEnd:function(){},timeStamp:function(){},trace:function(){},warn:function(){}};
 	}
 
-	function getGroupeContext(gc) {
-		if(typeof gc == "undefined" || gc.length == 0 || gc[0] == "") return false;
-		gc = (!$.isArray(gc) ? $.trim(gc).split(/\s+/) : gc);
-		if(gc[0] === "*") gc[0] = "global";
-		return gc;
-	}
-	
-	function applyEnhancements() {
-		var target = this,
-			group,
-			elems,
-			execGroups = {},
-			enhs = {};
-		
-		if (target.hasClass(enhOptions["class"])) {
-			elems = target.find(target.find('.'+enhOptions["class"]));
-		} else {
-			elems = target.find("[data-enhance]");
-		}
-		elems = elems.add(target);
 
-		$.each(elems, function(index,value) {
-			var g, i, eni;
-			g = getGroupeContext($(this).data(enhOptions.dataHandler) || "");
-			if(g) {
-				for(i=0;g[i];i++){
-					group = enhancementGroups[g[i]];
-					if(typeof group !== "undefined" ) {
-						execGroups[g[i]]=g[i];
-						for(eni=0;group[eni];eni++) {
+	function getGroupeContext(gc) {
+		if (typeof gc == "undefined" || gc.length == 0 || gc[0] == "") {
+			return false;
+		} 
+		gc = (!$.isArray(gc) ? $.trim(gc).split(/\s+/) : gc);
+
+		if (gc[0] === "*") {
+			gc[0] = "global";
+		}
+
+		return gc;
+	};
+
+
+	function getTargetElems($target) {
+		var elems;
+
+		// Check if the target or one of its decendents has the enhance trigger class
+		// Ex: in $(document).enhance(); "$(document)" is the target.
+		if ($target.hasClass(enhOptions["class"])) {
+			elems = $target;
+			elems.add($target.find('.' + enhOptions["class"]));
+		} else {
+			elems = $target.find('.' + enhOptions["class"]);
+		}
+
+		return elems;
+	}
+
+
+	// TODO: Further refactoring needed
+	function applyEnhancements() {
+		
+		var target = this,
+			_enhancementGroups = enhancementGroups,
+			elems,
+			enhancementList = {};
+		
+		// get list of elements with enhancements
+		elems = getTargetElems(target);
+		
+
+		// Determine enhancements to be applied (below), skip elements with enhancement already applied
+		$.each(elems, function(index, curElem) {
+			
+			
+			var groups, i, j;
+
+			// read data attribute on the element and get list (of the groups) of enhancements to apply
+			groups = getGroupeContext($(this).data(enhOptions.dataHandler) || "");
+
+			// skip if already enhanced
+			if (!$(curElem).data(enhOptions.isEnhancedFlag) === true) {
+				if (groups) {
+
+					$(curElem).data(enhOptions.isEnhancedFlag, true);
+					for (i = 0; groups[i]; i++) {
+						
+						if (typeof _enhancementGroups[groups[i]] !== "undefined" ) {
 							
-							if(!enhs[group[eni].id]) {
-								enhs[group[eni].id] = group[eni] ;
-								//reset previously added elements in global scope
-								enhs[group[eni].id].elems = [];
+							// TODO: clarify this
+							for (j = 0; _enhancementGroups[groups[i]][j]; j++) {
+								
+								if (!enhancementList[ _enhancementGroups[groups[i]][j].id ]) {
+									
+									enhancementList[ _enhancementGroups[groups[i]][j].id ] = _enhancementGroups[groups[i]][j];
+									//reset previously added elements in global scope
+									enhancementList[ _enhancementGroups[groups[i]][j].id ].elems = [];
+									
+									enhancementList[ _enhancementGroups[groups[i]][j].id ].groupByElem = index;
+									
+								} else { 
+									console.log('already applied enhancement', _enhancementGroups[groups[i]][j].id); 
+								}
+
+								if (!!!$(curElem).data(enhOptions["appliedMarkerPrefix"] + _enhancementGroups[groups[i]][j].id)){
+									enhancementList[_enhancementGroups[groups[i]][j].id].elems.push(curElem);
+									enhancementList[_enhancementGroups[groups[i]][j].id ].groupByElem = index;
+								}
+								
+								
+							}
+
+						} else {
+							if (enhancementsById[groups[i]]){
+								enhancementsById[groups[i]].groups = [ "nogroup_" +i ];
+								
+								_enhancementGroups[enhancementsById[groups[i]].group] = enhancementsById[groups[i]];
+								
+								enhancementList[ _enhancementGroups[enhancementsById[groups[i]].group] ] = _enhancementGroups[enhancementsById[groups[i]].group];
+								
+								if (!!!$(curElem).data(enhOptions["appliedMarkerPrefix"] + _enhancementGroups[enhancementsById[groups[i]].group].id)){
+									_enhancementGroups[enhancementsById[groups[i]].group].elems.push(curElem);
+								}
+								_enhancementGroups[enhancementsById[groups[i]].group].groupByElem = index;
+							} else {
+								console.warn('No enhancement "' + groups[i] + '" found.');
 							}
 							
-							if (!!!$(value).data("enhance-"+ group[eni].id + "-applied")){
-								enhs[group[eni].id].elems.push(value);
-							}
+						
 						}
+
+					}
+
+				} else {
+					console.warn('No enhancement specified on', $(this));
+				}
+
+			} else {
+				// TODO: Refactor. At this point it is assumed the enhancement code below worked and successfully applied the enhancements.
+				console.info('Skipped: already enhanced.');
+			}
+			
+			
+		});
+		
+		
+		console.groupCollapsed("--- Enhancement Detail");
+		console.time("--- Enhanced Time");
+		
+		var index=0,
+		groupId = 0;
+		/* Apply enhancements */				
+		$.each(enhancementList, function() {
+			
+			
+			var xthis= this, 
+				id = (xthis.id !== null) ? "#" + xthis.id + ": " : "",
+				desc = "Enhanced: " + id + xthis.title;
+				
+			function tryCatch(){
+				try {
+					
+					/* Start timing enhancement*/
+					if (hasConsoleTime) {
+						console.time(desc);
+					};
+
+					$(xthis.elems).data(enhOptions["appliedMarkerPrefix"] + xthis.id, true);
+					$(xthis.elems).addClass(enhOptions["appliedMarkerPrefix"] + xthis.id);
+
+					xthis.handler(target);
+					
+					if (hasConsoleTime) {
+						console.timeEnd(desc, xthis, target);
+					};
+					
+					counter = counter + 1;
+					
+
+				} catch(e) {
+					errors = errors+1;
+					if (hasConsole) {
+						console.error("Enhancement failed: " + xthis.title);
+						console.dir({
+							"exception": e,
+							"enhancement": xthis,
+							"target": target
+						});
 					}
 				}
 			}
-		});
-
-		/*** DEBUG ***/
-		//console.log('enh groups : ', _enG);
-		//console.log("enhancements to apply : ");
-		//console.dir(enhs);
-		/*** END DEBUG ***/
-
-		
-		$.each(enhs, function() {
-			var id = (this.id !== null) ? "#" + this.id + ": " : "",
-				desc = "Enhanced: " + id + this.title;
-			if (hasConsoleTime) console.time(desc);
-			$(this.elems).data("enhance-"+ this.id + "-applied", true);
-			$(this.elems).addClass("enhance-"+ this.id + "-applied");
-			this.handler($(this.elems), target);
-			try {
-
-			} catch(e) {
-				if (hasConsole){
-					console.error("Enhancement failed: " + this.title);
-					console.dir({
-						"exception": e,
-						"enhancement": this,
-						"target": target
-					});
+			
+			if(groupId !== xthis.groupByElem){
+				console.groupEnd();
+				groupId = xthis.groupByElem;
+				console.groupCollapsed("for element(s) : ", xthis.elems);
+				tryCatch();
+				
+			} else {
+				if( index === 0 ){
+					console.groupCollapsed("for element(s) : ", xthis.elems);
 				}
+				tryCatch();
 			}
-			if (hasConsoleTime) console.timeEnd(desc, this, target);
+			
+			index= index+1;
+			
+
 		});
+		console.groupEnd();
+		console.groupEnd();
+		console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+		console.timeEnd("--- Enhanced Time", this);  
+		counter =0;
 		return this;
 	}
 
 	function Enhancement(handler, _options) {
+		var _opts = this.option = $.extend({}, _options);
 		this.handler = handler;
-		var o = this.option = $.extend({}, _options);
-		this.id = o.id || 'enhancejs-' + (++enhanceCnt);
-		this.title = o.title || "";
-		var group = o.group || "";
-		if (o.id) group = group + " " + o.id;
-		this.groups = getGroupeContext(group);
-		this.elems = [];//will contain all elements from the group
+		this.id = _opts.id || '__jenhance_id_'+(++enhanceCnt)+'__';
+		this.title = _opts.title || "";
+		this.groups = getGroupeContext(_opts.group);
+		this.elems = []; //will contain all elements from the group
 	}
 
+	
+	
 	function registerEnhancement(handler, _options) {
-		if($.isFunction(handler)) {
+
+		if ($.isFunction(handler)) {
 			var enh = new Enhancement(handler, _options);
 			enhancements.push(enh);
+			enhancementsById[enh.id] = enh;
+			
 			$.each(enh.groups, function() {
-				var g = this.toString();
-				if(typeof enhancementGroups[g] == "undefined") {
-					enhancementGroups[g] = [];
-				}
-				enhancementGroups[g].push(enh);
+				var group = this.toString();
+				if(typeof enhancementGroups[group] === "undefined") {
+					enhancementGroups[group] = [];
+				} 
+				enhancementGroups[group].push(enh);
 			});
 		} else {
 			enhOptions = $.extend(enhOptions, handler);
 		}
 	}
-
+	
+	
 	function array_merge(first, second, byVal) {
 		if(typeof byVal !== "undefined" && byVal) {
 			var i = first.length,
@@ -182,10 +325,12 @@
 			return $.merge(first, second);
 		}
 	}
+
 	// Check if jQuery is loaded
 	if ($) {
 		$.fn.array_merge = $.array_merge = array_merge;
 		$.fn.enhance = applyEnhancements;
 		$.enhance = registerEnhancement;
-	}
+	
+	} 
 })(jQuery);
