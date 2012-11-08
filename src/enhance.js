@@ -66,18 +66,83 @@ Upcomming features:
 		enhanceCnt = 0, // Use for auto id
 		counter = 0,
 		errors = 0,
+		timers = {},
 		enhOptions = {
 			"class" : "enhance", // default className selector 
 			"dataHandler" : "enhance", // default data attribute [data-enhance]
 			"isEnhancedFlag" : "isEnhance", // default data attribute [data-enhance]
 			"appliedMarkerPrefix" : "isEnhanced-"
-		};
-		
+		},
+		indentForIE = "";
 
+	if(!hasConsoleTime){
+		indentForIE = "      ";
+	}
 	if (!hasConsole){
 		console = {assert:function(){},clear:function(){},count:function(){},debug:function(){},dir:function(){},dirxml:function(){},error:function(){},exception:function(){},group:function(){},groupCollapsed:function(){},groupEnd:function(){},info:function(){},log:function(){},memoryProfile:function(){},memoryProfileEnd:function(){},profile:function(){},profileEnd:function(){},table:function(){},time:function(){},timeEnd:function(){},timeStamp:function(){},trace:function(){},warn:function(){}};
 	}
+	
+	
+	function logGroup(group, elem, status){
+		elem = elem || "";
+		if(hasConsoleTime){
+			if(status === "start"){
+				console.groupCollapsed(group, elem);
+			} else {
+				console.groupEnd();
+			}
+			
+		} else {
+			if(status === "start"){
+				
+				var selector = $(elem).prop("tagName") || "";
+				
+				
+				var id = $(elem).attr("id");
+				if (id) { 
+					selector += "#"+ id;
+				}
 
+				var classNames = $(elem).attr("class");
+				if (classNames) {
+					selector += "." + $.trim(classNames).replace(/\s/gi, ".");
+				}
+				
+				console.log(group, selector);
+			}
+		}
+	};
+
+	function startTimer(id) {
+		function instance(id){
+			this.id = id;
+			var date = new Date;
+			this.start = date.getTime();
+		}
+		if(hasConsoleTime){
+			console.time(id);
+		} else {
+			timers[id] = [];
+			var timerInstance = new instance(id);
+			timers[id].push(timerInstance);
+		}
+		
+	}
+	
+	function time(id){
+		var date = new Date;
+		var end = date.getTime();
+		var time =  end - timers[id][0].start;
+	
+		return time;
+	}
+	function logTime(id){
+		if(hasConsoleTime){
+			console.timeEnd(id);  
+		} else {
+			 console.log(id +" : "+time(id)+"ms");
+		}
+	}
 
 	function getGroupeContext(gc) {
 		if (typeof gc == "undefined" || gc.length == 0 || gc[0] == "") {
@@ -111,20 +176,20 @@ Upcomming features:
 
 	// TODO: Further refactoring needed
 	function applyEnhancements() {
-		
+
 		var target = this,
 			_enhancementGroups = enhancementGroups,
 			elems,
 			enhancementList = {};
-		
+
 		// get list of elements with enhancements
 		elems = getTargetElems(target);
-		
+
 
 		// Determine enhancements to be applied (below), skip elements with enhancement already applied
 		$.each(elems, function(index, curElem) {
-			
-			
+
+
 			var groups, i, j;
 
 			// read data attribute on the element and get list (of the groups) of enhancements to apply
@@ -136,20 +201,20 @@ Upcomming features:
 
 					$(curElem).data(enhOptions.isEnhancedFlag, true);
 					for (i = 0; groups[i]; i++) {
-						
+
 						if (typeof _enhancementGroups[groups[i]] !== "undefined" ) {
-							
+
 							// TODO: clarify this
 							for (j = 0; _enhancementGroups[groups[i]][j]; j++) {
-								
+
 								if (!enhancementList[ _enhancementGroups[groups[i]][j].id ]) {
-									
+
 									enhancementList[ _enhancementGroups[groups[i]][j].id ] = _enhancementGroups[groups[i]][j];
 									//reset previously added elements in global scope
 									enhancementList[ _enhancementGroups[groups[i]][j].id ].elems = [];
-									
+
 									enhancementList[ _enhancementGroups[groups[i]][j].id ].groupByElem = index;
-									
+
 								} else { 
 									console.log('already applied enhancement', _enhancementGroups[groups[i]][j].id); 
 								}
@@ -158,18 +223,18 @@ Upcomming features:
 									enhancementList[_enhancementGroups[groups[i]][j].id].elems.push(curElem);
 									enhancementList[_enhancementGroups[groups[i]][j].id ].groupByElem = index;
 								}
-								
-								
+
+
 							}
 
 						} else {
 							if (enhancementsById[groups[i]]){
 								enhancementsById[groups[i]].groups = [ "nogroup_" +i ];
-								
+
 								_enhancementGroups[enhancementsById[groups[i]].group] = enhancementsById[groups[i]];
-								
+
 								enhancementList[ _enhancementGroups[enhancementsById[groups[i]].group] ] = _enhancementGroups[enhancementsById[groups[i]].group];
-								
+
 								if (!!!$(curElem).data(enhOptions["appliedMarkerPrefix"] + _enhancementGroups[enhancementsById[groups[i]].group].id)){
 									_enhancementGroups[enhancementsById[groups[i]].group].elems.push(curElem);
 								}
@@ -177,8 +242,8 @@ Upcomming features:
 							} else {
 								console.warn('No enhancement "' + groups[i] + '" found.');
 							}
-							
-						
+
+
 						}
 
 					}
@@ -191,43 +256,36 @@ Upcomming features:
 				// TODO: Refactor. At this point it is assumed the enhancement code below worked and successfully applied the enhancements.
 				console.info('Skipped: already enhanced.');
 			}
-			
-			
+
+
 		});
-		
-		
-		console.groupCollapsed("--- Enhancement Detail");
-		console.time("--- Enhanced Time");
+
+		logGroup("--- Enhancement Detail ",null, "start");
+		startTimer("--- Enhanced Time");
 		
 		var index=0,
 		groupId = 0;
 		/* Apply enhancements */				
 		$.each(enhancementList, function() {
-			
-			
+
 			var xthis= this, 
 				id = (xthis.id !== null) ? "#" + xthis.id + ": " : "",
 				desc = "Enhanced: " + id + xthis.title;
-				
+
 			function tryCatch(){
 				try {
-					
-					/* Start timing enhancement*/
-					if (hasConsoleTime) {
-						console.time(desc);
-					};
 
+					/* Start timing enhancement*/
+					startTimer(indentForIE+indentForIE+desc);
+					
 					$(xthis.elems).data(enhOptions["appliedMarkerPrefix"] + xthis.id, true);
 					$(xthis.elems).addClass(enhOptions["appliedMarkerPrefix"] + xthis.id);
 
 					xthis.handler(target);
 					
-					if (hasConsoleTime) {
-						console.timeEnd(desc, xthis, target);
-					};
+					logTime(indentForIE+indentForIE+desc);
 					
 					counter = counter + 1;
-					
 
 				} catch(e) {
 					errors = errors+1;
@@ -242,27 +300,34 @@ Upcomming features:
 				}
 			}
 			
+			
 			if(groupId !== xthis.groupByElem){
-				console.groupEnd();
-				groupId = xthis.groupByElem;
-				console.groupCollapsed("for element(s) : ", xthis.elems);
-				tryCatch();
 				
+				logGroup("",null, "end");
+				
+				groupId = xthis.groupByElem; 
+				logGroup(indentForIE+"for element(s) : ",xthis.elems, "start");
+				
+				tryCatch();
+
 			} else {
 				if( index === 0 ){
-					console.groupCollapsed("for element(s) : ", xthis.elems);
+					logGroup(indentForIE+"for element(s) : ",xthis.elems, "start");
 				}
 				tryCatch();
 			}
-			
-			index= index+1;
-			
 
+			index= index+1;
+
+			
+			
 		});
-		console.groupEnd();
-		console.groupEnd();
+		
+		logGroup("",null, "end");
+		logGroup("",null, "end");
 		console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
-		console.timeEnd("--- Enhanced Time", this);  
+		
+		logTime("--- Enhanced Time");
 		counter =0;
 		return this;
 	}
@@ -276,15 +341,15 @@ Upcomming features:
 		this.elems = []; //will contain all elements from the group
 	}
 
-	
-	
+
+
 	function registerEnhancement(handler, _options) {
 
 		if ($.isFunction(handler)) {
 			var enh = new Enhancement(handler, _options);
 			enhancements.push(enh);
 			enhancementsById[enh.id] = enh;
-			
+
 			$.each(enh.groups, function() {
 				var group = this.toString();
 				if(typeof enhancementGroups[group] === "undefined") {
@@ -296,8 +361,8 @@ Upcomming features:
 			enhOptions = $.extend(enhOptions, handler);
 		}
 	}
-	
-	
+
+
 	function array_merge(first, second, byVal) {
 		if(typeof byVal !== "undefined" && byVal) {
 			var i = first.length,
@@ -309,7 +374,7 @@ Upcomming features:
 						first[i++] = second[j];
 					}
 				}
-	
+
 			} else {
 				while ( second[j] !== undefined ) {
 					if($.inArray(second[j], first)===-1) {
@@ -317,9 +382,9 @@ Upcomming features:
 					}
 				}
 			}
-	
+
 			first.length = i;
-	
+
 			return first;
 		} else {
 			return $.merge(first, second);
@@ -331,6 +396,6 @@ Upcomming features:
 		$.fn.array_merge = $.array_merge = array_merge;
 		$.fn.enhance = applyEnhancements;
 		$.enhance = registerEnhancement;
-	
+
 	} 
 })(jQuery);
