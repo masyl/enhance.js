@@ -177,7 +177,8 @@ Upcomming features:
 								console.log('already applied enhancement', enhs[group[eni].id]); 
 							}
 							
-							if (!!!$(value).data("enhance-"+ group[eni].id + "-applied")){
+							
+							if (!!!$(value).hasClass("enhance-"+ group[eni].id + "-applied")){
 								enhs[group[eni].id].elems.push(value);
 								enhs[group[eni].id].groupId = index;
 							} else {
@@ -214,9 +215,9 @@ Upcomming features:
 					startTimer(indentForIE+indentForIE+desc);
 					
 				
-					$(_this.elems).data("enhance-"+ _this.id + "-applied", true);
-					//class 'enhance-'..'-applied' removed (data is there already we dont need 2 flag)
-					//$(_this.elems).addClass("enhance-"+ _this.id + "-applied");
+					//$(_this.elems).data("enhance-"+ _this.id + "-applied", true);
+					//data 'enhance-'..'-applied' removed (class is there already we dont need 2 flag)
+					$(_this.elems).addClass("enhance-"+ _this.id + "-applied");
 					_this.handler($(_this.elems), target);
 					
 					counter = counter + 1;
