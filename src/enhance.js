@@ -213,8 +213,10 @@ Upcomming features:
 					
 					startTimer(indentForIE+indentForIE+desc);
 					
-					//$(_this.elems).data("enhance-"+ _this.id + "-applied", true);
-					$(_this.elems).addClass("enhance-"+ _this.id + "-applied");
+				
+					$(_this.elems).data("enhance-"+ _this.id + "-applied", true);
+					//class 'enhance-'..'-applied' removed (data is there already we dont need 2 flag)
+					//$(_this.elems).addClass("enhance-"+ _this.id + "-applied");
 					_this.handler($(_this.elems), target);
 					
 					counter = counter + 1;
