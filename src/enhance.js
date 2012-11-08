@@ -35,6 +35,10 @@
 			title: "adding ajax behavior on paging"
 			group: "ajax"
 		});
+		
+		// Clear Enhancement for this element
+		jQuery("#element").clearEnhance();
+		
 
 
 Upcomming features:
@@ -47,6 +51,7 @@ Upcomming features:
 * Also enhanced elements are flagged so the same enchancement is not runned twice
 *  
 * November 8, 2012 Update
+* -Clear Enhancement
 * -Console log for already enhanced elements 
 * -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
 * -Grouped log to clean the console
@@ -293,7 +298,28 @@ Upcomming features:
 			enhOptions = $.extend(enhOptions, handler);
 		}
 	}
-
+	
+	function clearEnhancements() {
+		var $this = $(this);
+		
+		var classNames = $this.attr("class");
+		if(classNames){
+	
+			var classArray=classNames.split(" "); 
+			
+			for (var i=0; i<classArray.length; i++) {
+			
+				var regexp=new RegExp("^enhance\\-.+\\-applied$");
+				
+				if( classArray[i].match(regexp) ){
+					
+					$this.removeClass(classArray[i]);
+				}
+				
+			}
+		}
+	}
+	
 	function array_merge(first, second, byVal) {
 		if(typeof byVal !== "undefined" && byVal) {
 			var i = first.length,
@@ -325,6 +351,7 @@ Upcomming features:
 	if ($) {
 		$.fn.array_merge = $.array_merge = array_merge;
 		$.fn.enhance = applyEnhancements;
+		$.fn.clearEnhance = clearEnhancements;
 		$.enhance = registerEnhancement;
 	}
 })(jQuery);
