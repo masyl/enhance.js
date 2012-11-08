@@ -7,7 +7,7 @@
 *				Anthony Bucci - anthony.bucci@nurun.com
 * 				Etienne Dion - etienne.dion@nurun.com
 *
-* Modified Date : November 7, 2012
+* Modified Date : November 8, 2012
 	Enhance.js
 
 	A javascript library for progressive enhancement
