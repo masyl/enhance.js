@@ -47,14 +47,11 @@ Upcomming features:
 * Also enhanced elements are flagged so the same enchancement is not runned twice
 *  
 * November 7, 2012 Update
-* -enhancing by group or | and by id
-* -Prevent rehancement on already enhanced elements
 * -Console log for already enhanced elements 
-* -Option to change the 'enhance' class name to prevent conflict with other enhancing tools
-* -grouped log to clean the console
+* -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
+* -Grouped log to clean the console
+* -Log time and grouped log for ie
 * 
-* 
-*
 */
 
 (function($) {
