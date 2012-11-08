@@ -46,7 +46,7 @@ Upcomming features:
 * elements where the same data-enhance attribute is applied.
 * Also enhanced elements are flagged so the same enchancement is not runned twice
 *  
-* November 7, 2012 Update
+* November 8, 2012 Update
 * -Console log for already enhanced elements 
 * -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
 * -Grouped log to clean the console
