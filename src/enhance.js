@@ -56,6 +56,7 @@ Upcomming features:
 * -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
 * -Grouped log to clean the console
 * -Log time and grouped log for ie
+* - fix bug of elements that could not enhance itself
 * 
 */
 
@@ -140,6 +141,22 @@ Upcomming features:
 		}
 	}
 	
+	function getTargetElems(target) {
+		var elems;
+
+		// Check if the target or one of its decendents has the enhance trigger class
+		// Ex: in $(document).enhance(); "$(document)" is the target.
+		
+		if (target.hasClass(enhOptions["class"])) {
+			elems = target;
+			elems.add(target.find('.' + enhOptions["class"]));
+		} else {
+			elems = target.find('.' + enhOptions["class"]);
+		}
+		
+		return elems;
+	}
+	
 	function getGroupeContext(gc) {
 		if(typeof gc == "undefined" || gc.length == 0 || gc[0] == "") return false;
 		gc = (!$.isArray(gc) ? $.trim(gc).split(/\s+/) : gc);
@@ -154,12 +171,7 @@ Upcomming features:
 			execGroups = {},
 			enhs = {};
 		
-		if (target.hasClass(enhOptions["class"])) {
-			elems = target.find(target.find('.'+enhOptions["class"]));
-		} else {
-			elems = target.find("[data-enhance]");
-		}
-		elems = elems.add(target);
+		elems = getTargetElems(target);
 		
 		$.each(elems, function(index,value) {
 			var g, i, eni;
