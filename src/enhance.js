@@ -179,7 +179,7 @@ Upcomming features:
 								enhs[group[eni].id].elems = [];
 								enhs[group[eni].id].groupId = index;
 							} else {
-								console.log('already applied enhancement', enhs[group[eni].id]); 
+								console.warn('already applied enhancement', enhs[group[eni].id]); 
 							}
 							
 							
@@ -187,7 +187,7 @@ Upcomming features:
 								enhs[group[eni].id].elems.push(value);
 								enhs[group[eni].id].groupId = index;
 							} else {
-								console.log('already applied enhancement', enhs[group[eni].id]); 
+								console.warn('already applied enhancement', enhs[group[eni].id]); 
 							}
 						}
 					} else {
@@ -264,7 +264,12 @@ Upcomming features:
 		
 		logGroup("",null, "end");
 		logGroup("",null, "end");
-		console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+		if(errors){
+			console.error("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+		} else {
+			console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+		}
+		
 		
 		logTime("--- Enhanced Time");
 		counter =0;
