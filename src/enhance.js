@@ -7,44 +7,44 @@
 *				Anthony Bucci - anthony.bucci@nurun.com
 * 				Etienne Dion - etienne.dion@nurun.com
 *
-* Modified Date : November 8, 2012
-*	Enhance.js
-*
-*	A javascript library for progressive enhancement
-*
-*	Usage:
-*		 // Apply all enhancements to the whole document
-*		jQuery(document).enhance();
-*
-*		 // Apply all enhancements to a specific part of the page (after ajax or dhtml)
-* 		jQuery("#pageSection1").enhance();
-*
-*		// Register a new enhancement by id
-*		jQuery.enhance(function (targets) {
-*			// some code here...
-*		}, {
-*			id: "ajaxPagingBehavior",
-*			title: "adding ajax behavior on paging"
-*		});
-*
-*		// Register a new enhancement by group
-*		jQuery.enhance(function (targets) {
-*			// some code here...
-*		}, {
-*			id: "ajaxPagingBehavior",
-*			title: "adding ajax behavior on paging"
-*			group: "ajax"
-*		});
-*		
-*		// Clear Enhancement for this element
-*		jQuery("#element").clearEnhance();
-*		
-*
-*
-* Upcomming features:
-* - Provide a callback for when enhancement are complete
-* - Specify a method to test if requirements are met
-*
+* Modified Date : March 22, 2013
+	Enhance.js
+
+	A javascript library for progressive enhancement
+
+	Usage:
+		 // Apply all enhancements to the whole document
+		jQuery(document).enhance();
+
+		 // Apply all enhancements to a specific part of the page (after ajax or dhtml)
+ 		jQuery("#pageSection1").enhance();
+
+		// Register a new enhancement by id
+		jQuery.enhance(function (targets) {
+			// some code here...
+		}, {
+			id: "ajaxPagingBehavior",
+			title: "adding ajax behavior on paging"
+		});
+
+		// Register a new enhancement by group
+		jQuery.enhance(function (targets) {
+			// some code here...
+		}, {
+			id: "ajaxPagingBehavior",
+			title: "adding ajax behavior on paging"
+			group: "ajax"
+		});
+		
+		// Clear Enhancement for this element
+		jQuery("#element").clearEnhance();
+		
+
+
+Upcomming features:
+- Provide a callback for when enhancement are complete
+- Specify a method to test if requirements are met
+
 * October 13, 2011 Update - AP
 * Added "elems" attribute of the enhancement object which is an array of the 
 * elements where the same data-enhance attribute is applied.
@@ -56,7 +56,6 @@
 * -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
 * -Grouped log to clean the console
 * -Log time and grouped log for ie
-* - fix bug of elements that could not enhance itself
 * 
 */
 
@@ -142,26 +141,37 @@
 	}
 	
 	function getTargetElems(target) {
-		var elems;
+		var elems = [];
 
 		// Check if the target or one of its decendents has the enhance trigger class
 		// Ex: in $(document).enhance(); "$(document)" is the target.
 		
 		if (target.hasClass(enhOptions["class"])) {
-			elems = target;
-			elems.add(target.find('.' + enhOptions["class"]));
-		} else {
-			elems = target.find('.' + enhOptions["class"]);
-		}
+			elems.push($(target)[0]);
+		} 
+		
+		target.find('.' + enhOptions["class"]).each(function(){
+			elems.push($(this)[0]);
+		});
 		
 		return elems;
 	}
 	
-	function getGroupeContext(gc) {
-		if(typeof gc == "undefined" || gc.length == 0 || gc[0] == "") return false;
-		gc = (!$.isArray(gc) ? $.trim(gc).split(/\s+/) : gc);
-		if(gc[0] === "*") gc[0] = "global";
-		return gc;
+	function getGroupeContext(gc) { 
+		var list,
+			globalIndex;
+		
+		if (typeof gc == "undefined" || gc.length == 0 || gc[0] == "") {
+			return false;
+		}
+
+		// replace asterisk with actual global group name
+		list = (!$.isArray(gc) ? $.trim(gc).split(/\s+/) : gc);
+		globalIndex = $.inArray('*', list);
+		if (globalIndex != -1) {
+			list[globalIndex] = 'global';
+		}
+		return list;
 	}
 	
 	function applyEnhancements() {
@@ -175,11 +185,11 @@
 		
 		$.each(elems, function(index,value) {
 			var g, i, eni;
+
 			g = getGroupeContext($(this).data(enhOptions.dataHandler) || "");
 			if(g) {
 				for(i=0;g[i];i++){
 					group = enhancementGroups[g[i]];
-					
 					if(typeof group !== "undefined" ) {
 						execGroups[g[i]]=g[i];
 						
@@ -191,15 +201,15 @@
 								enhs[group[eni].id].elems = [];
 								enhs[group[eni].id].groupId = index;
 							} else {
-								console.warn('already applied enhancement', enhs[group[eni].id]); 
+								//console.warn('Already in a group ', enhs[group[eni].id]); 
 							}
-							
+							 
 							
 							if (!!!$(value).hasClass("enhance-"+ group[eni].id + "-applied")){
 								enhs[group[eni].id].elems.push(value);
 								enhs[group[eni].id].groupId = index;
 							} else {
-								console.warn('already applied enhancement', enhs[group[eni].id]); 
+								console.warn('Already applied enhancement ', enhs[group[eni].id]); 
 							}
 						}
 					} else {
@@ -209,13 +219,16 @@
 			}
 		});
 
-		/*** DEBUG ***/
-		//console.log('enh groups : ', _enG);
-		//console.log("enhancements to apply : ");
-		//console.dir(enhs);
-		/*** END DEBUG ***/
+		
 
 		logGroup("--- Enhancement Detail ",null, "start");
+		
+		/*** DEBUG ***/
+		//console.log('enh groups : ', _enG);
+		console.log("All Enhancements to apply : ");
+		console.dir(enhs);
+		/*** END DEBUG ***/
+		
 		startTimer("--- Enhanced Time");
 		
 		var index=0,
