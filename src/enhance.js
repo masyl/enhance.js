@@ -59,8 +59,9 @@ Upcomming features:
 * 
 * September 9, 2013 Update - ED
 * - Add Support for AMD / Require.js
+* January 6, 2014 Update - ED
+* - Add Support for QUnit 
 */
-
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -93,12 +94,15 @@ Upcomming features:
 
     function logGroup(group, elem, status){
         elem = elem || "";
-        if(hasConsoleTime){
-            if(status === "start"){
-                console.groupCollapsed(group, elem);
-            } else {
-                console.groupEnd();
-            }
+
+        if(hasConsoleTime && typeof window.QUnit === 'undefined'){
+
+                if(status === "start"){
+                    console.groupCollapsed(group, elem);
+                } else {
+                    console.groupEnd();
+                }
+
 
         } else {
             if(status === "start"){
@@ -115,6 +119,7 @@ Upcomming features:
                 }
 
                 console.log(group, selector);
+
             }
         }
     };
@@ -125,7 +130,7 @@ Upcomming features:
             var date = new Date;
             this.start = date.getTime();
         }
-        if(hasConsoleTime){
+        if(hasConsoleTime && typeof window.QUnit === 'undefined'){
             console.time(id);
         } else {
             timers[id] = [];
@@ -143,11 +148,13 @@ Upcomming features:
         return time;
     }
     function logTime(id){
-        if(hasConsoleTime){
+
+        if(hasConsoleTime && typeof window.QUnit === 'undefined'){
             console.timeEnd(id);
         } else {
             console.log(id +" : "+time(id)+"ms");
         }
+
     }
 
     function getTargetElems(target) {
@@ -219,11 +226,15 @@ Upcomming features:
                                 enhs[group[eni].id].elems.push(value);
                                 enhs[group[eni].id].groupId = index;
                             } else {
-                                console.warn('Already applied enhancement ', enhs[group[eni].id]);
+                                if(typeof window.QUnit === 'undefined'){
+                                    console.warn('Already applied enhancement ', enhs[group[eni].id]);
+                                }
                             }
                         }
                     } else {
-                        console.warn('No enhancement "' + g + '" found.');
+                        if(typeof window.QUnit === 'undefined'){
+                            console.warn('No enhancement "' + g + '" found.');
+                        }
                     }
                 }
             }
@@ -235,8 +246,13 @@ Upcomming features:
 
         /*** DEBUG ***/
             //console.log('enh groups : ', _enG);
+
         console.log("All Enhancements to apply : ");
-        console.dir(enhs);
+
+        if(console.dir && typeof window.QUnit === 'undefined') {
+            console.dir(enhs);
+        }
+
         /*** END DEBUG ***/
 
         startTimer("--- Enhanced Time");
@@ -249,11 +265,11 @@ Upcomming features:
                 desc = "Enhanced: " + id + this.title,
                 _this= this;
 
+
             function tryCatch(){
                 try {
 
                     startTimer(indentForIE+indentForIE+desc);
-
 
                     //$(_this.elems).data("enhance-"+ _this.id + "-applied", true);
                     //data 'enhance-'..'-applied' removed (class is there already we dont need 2 flag)
@@ -263,15 +279,28 @@ Upcomming features:
                     counter = counter + 1;
                     logTime(indentForIE+indentForIE+desc);
 
+                    if(typeof window.QUnit !== 'undefined'){
+                        ok( true, "Enhance Success" );
+                    }
+
+
                 } catch(e) {
                     errors = errors+1;
                     if (hasConsole){
                         console.error("Enhancement failed: " + _this.title);
-                        console.dir({
-                            "exception": e,
-                            "enhancement": _this,
-                            "target": target
-                        });
+                        if(console.dir) {
+                            if(typeof window.QUnit === 'undefined'){
+                                console.dir({
+                                    "exception": e,
+                                    "enhancement": _this,
+                                    "target": target
+                                });
+                            }
+                        }
+                    }
+
+                    if(typeof window.QUnit !== 'undefined'){
+                        ok( false, "Enhance Fail" );
                     }
                 }
             }
@@ -284,12 +313,19 @@ Upcomming features:
                 groupId = _this.groupId;
                 logGroup(indentForIE+"for element(s) : ",_this.elems, "start");
 
-                tryCatch();
 
             } else {
                 if( index === 0 ){
                     logGroup(indentForIE+"for element(s) : ",_this.elems, "start");
                 }
+
+
+            }
+            if(typeof window.QUnit !== 'undefined'){
+                test( "Test Enhance :" +id + this.title, function() {
+                    tryCatch();
+                });
+            } else {
                 tryCatch();
             }
 
@@ -299,14 +335,16 @@ Upcomming features:
 
         logGroup("",null, "end");
         logGroup("",null, "end");
-        if(errors){
-            console.error("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
-        } else {
-            console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+        if(typeof window.QUnit === 'undefined'){
+            if(errors){
+                console.error("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+            } else {
+                console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+            }
+
+            logTime("--- Enhanced Time");
         }
 
-
-        logTime("--- Enhanced Time");
         counter =0;
 
         return this;
