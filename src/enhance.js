@@ -114,7 +114,7 @@ if(typeof window.QUnit !== 'undefined'){
     function logGroup(group, elem, status){
         elem = elem || "";
 
-        if(hasConsoleTime && typeof window.QUnit !== 'undefined'){
+        if(hasConsoleTime && typeof window.QUnit === 'undefined'){
 
             if(status === "start"){
                 console.groupCollapsed(group, elem);
