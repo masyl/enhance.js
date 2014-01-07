@@ -6,20 +6,24 @@ A javascript library for progressive enhancement
 Usage:
 
 Apply all enhancements to the whole document
+```sh
     jQuery(document).enhance();
-
+```
 Apply all enhancements to a specific part of the page (after ajax or dhtml)
+```sh
     jQuery("#pageSection1").enhance();
-
+```
 Register a new enhancement by id
+```sh
     jQuery.enhance(function (targets) {
         // some code here...
     }, {
         id: "ajaxPagingBehavior",
         title: "adding ajax behavior on paging"
     });
-
+```
 Register a new enhancement by group
+```sh
     jQuery.enhance(function (targets) {
         var options = this.option.options;
         $(target).each(
@@ -31,10 +35,10 @@ Register a new enhancement by group
         group: "ajax"
         options: { variable : "test" }
     });
-
+```
 Clear Enhancement for this element
     jQuery("#element").clearEnhance();
-		
+```
 
 
 
