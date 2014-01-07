@@ -1,5 +1,39 @@
-/* 
-* Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
+
+Enhance.js
+
+A javascript library for progressive enhancement
+
+Usage:
+     // Apply all enhancements to the whole document
+    jQuery(document).enhance();
+
+     // Apply all enhancements to a specific part of the page (after ajax or dhtml)
+    jQuery("#pageSection1").enhance();
+
+    // Register a new enhancement by id
+    jQuery.enhance(function (targets) {
+        // some code here...
+    }, {
+        id: "ajaxPagingBehavior",
+        title: "adding ajax behavior on paging"
+    });
+
+    // Register a new enhancement by group
+    jQuery.enhance(function (targets) {
+        // some code here...
+    }, {
+        id: "ajaxPagingBehavior",
+        title: "adding ajax behavior on paging"
+        group: "ajax"
+    });
+
+    // Clear Enhancement for this element
+    jQuery("#element").clearEnhance();
+		
+
+
+
+Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
 * Date : 2010
 * Modified By: Michel Gratton - michel.gratton@nurun.com, michel.gratton@nadrox.com
 * 				Billy Rancourt - billy.rancourt@nurun.com
@@ -7,44 +41,13 @@
 *				Anthony Bucci - anthony.bucci@nurun.com
 * 				Etienne Dion - etienne.dion@nurun.com
 *
-* Modified Date : March 22, 2013
-	Enhance.js
-
-	A javascript library for progressive enhancement
-
-	Usage:
-		 // Apply all enhancements to the whole document
-		jQuery(document).enhance();
-
-		 // Apply all enhancements to a specific part of the page (after ajax or dhtml)
- 		jQuery("#pageSection1").enhance();
-
-		// Register a new enhancement by id
-		jQuery.enhance(function (targets) {
-			// some code here...
-		}, {
-			id: "ajaxPagingBehavior",
-			title: "adding ajax behavior on paging"
-		});
-
-		// Register a new enhancement by group
-		jQuery.enhance(function (targets) {
-			// some code here...
-		}, {
-			id: "ajaxPagingBehavior",
-			title: "adding ajax behavior on paging"
-			group: "ajax"
-		});
-		
-		// Clear Enhancement for this element
-		jQuery("#element").clearEnhance();
-		
-
+* Modified Date : January 6, 2014
 
 Upcomming features:
 - Provide a callback for when enhancement are complete
 - Specify a method to test if requirements are met
 
+Updated:
 * October 13, 2011 Update - AP
 * Added "elems" attribute of the enhancement object which is an array of the 
 * elements where the same data-enhance attribute is applied.
@@ -61,4 +64,3 @@ Upcomming features:
 * - Add Support for AMD / Require.js
 * January 6, 2014 Update - ED
 * - Add Support for QUnit 
-*/
