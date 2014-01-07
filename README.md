@@ -10,6 +10,7 @@ Usage:
 
 ###Apply all enhancements to the whole document
 ####HTML:
+```sh
 <div class="enhance" data-enhance="init">
     <div class="enhance" data-enhance="map"></div>
 </div>
@@ -18,16 +19,15 @@ Usage:
 
 <div class="enhance" data-enhance="test"></div>
 
-```sh
 ```
 ####Javascript:
 ```sh
     $.enhance(Function.init, { id: "init", title: "Init flags"});
-    $.enhance(Widgets.map, { id: "map", title: "Map Initialisation", emitter: emitter});
-    $.enhance(Widgets.otherWidget, { id: "otherWidget", title: "otherWidget on homepage", emitter: emitter});
-    $.enhance(Widgets.otherWidget, { id: "otherWidget", title: "otherWidget on homepage", emitter: emitter});
-    $.enhance(Widgets.test1, { group: "test", title: "test1", emitter: emitter});
-    $.enhance(Widgets.test2, { group: "test", title: "test1", emitter: emitter});
+    $.enhance(Widgets.map, { id: "map", title: "Map Initialisation"});
+    $.enhance(Widgets.otherWidget, { id: "otherWidget", title: "otherWidget on homepage", options: {}});
+    $.enhance(Widgets.otherWidget, { id: "otherWidget", title: "otherWidget on homepage", });
+    $.enhance(Widgets.test1, { group: "test", title: "test1"});
+    $.enhance(Widgets.test2, { group: "test", title: "test2"});
     $(document).enhance();
 ```
 ###Apply all enhancements to a specific part of the page (after ajax or dhtml)
