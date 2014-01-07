@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0d362cd-1fa4-4f86-9d08-81d14e160535" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enhance.js" afterPath="$PROJECT_DIR$/src/enhance.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/jquery-1.10.2.min.js" afterPath="$PROJECT_DIR$/libs/jquery-1.10.2.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="enhance.js.iws" />
@@ -36,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enhance.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="enhance.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/enhance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="0" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.019206146" vertical-offset="0" max-vertical-offset="5940">
+            <state line="84" column="20" selection-start="2724" selection-end="2724" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="5940">
               <folding />
             </state>
           </provider>
@@ -48,10 +47,8 @@
       <file leaf-file-name="jquery-1.10.2.min.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/libs/jquery-1.10.2.min.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="74" selection-start="64284" selection-end="64284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state line="5" column="74" selection-start="64284" selection-end="64284" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="165">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,10 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="50" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1620">
+            <state line="104" column="118" selection-start="3542" selection-end="3542" vertical-scroll-proportion="0.9231754" vertical-offset="839" max-vertical-offset="1650">
               <folding />
             </state>
           </provider>
@@ -144,7 +141,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/README" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/sample.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -153,6 +149,7 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/libs/jquery-1.10.2.min.js" />
         <option value="$PROJECT_DIR$/src/enhance.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -257,8 +254,8 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="web-ide.project.structure" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -267,6 +264,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -277,23 +282,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -395,13 +392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="50" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1620">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/qunit.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="13" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3765">
@@ -460,15 +450,20 @@
     <entry file="file://$PROJECT_DIR$/libs/jquery-1.10.2.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="74" selection-start="64284" selection-end="64284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/enhance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.019206146" vertical-offset="0" max-vertical-offset="5940">
+        <state line="84" column="20" selection-start="2724" selection-end="2724" vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="5940">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="118" selection-start="3542" selection-end="3542" vertical-scroll-proportion="0.9231754" vertical-offset="839" max-vertical-offset="1650">
           <folding />
         </state>
       </provider>

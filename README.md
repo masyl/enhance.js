@@ -100,3 +100,6 @@ Updated:
 * - Add Support for AMD / Require.js
 * January 6, 2014 Update - ED
 * - Add Support for QUnit 
+
+
+Note : To use QUnit and Required see : https://github.com/samastur/mjp/commit/9502d76582ac5a5288cf5b5408499c5ede142b1c
