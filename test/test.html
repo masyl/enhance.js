@@ -2,10 +2,18 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link href="styles/main.css" rel="stylesheet" />
-		<script src="libs/jquery-1.4.4-min.js"></script>
-		<script src="src/enhance.js"></script>
-		<script src="src/sample.js"></script>
+		<link href="../styles/main.css" rel="stylesheet" />
+		<script src="../libs/jquery-1.4.4-min.js"></script>
+
+
+        <!--  QUnit   -->
+        <link rel="stylesheet" href="qunit.css">
+        <script src="qunit.js"></script>
+
+		<script src="../src/enhance.js"></script>
+		<script src="../src/sample.js"></script>
+
+
 		<title>Enhance Javascript Library</title>
 		<script id="sampleContent" type="text/html">
 			This is some new content and ...
@@ -152,9 +160,10 @@ $(function(){
 				</div>
 
 
-
+                <div id="qunit"></div>
 			</div>
 		</div>
+
 
 
 	</body>

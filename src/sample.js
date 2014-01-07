@@ -38,11 +38,13 @@
 		// Trigger the main enhancement loop on document ready
 		$(document).enhance();
 		// Run enhancements again for the newly added content
-		$("#btnAddContent").click(function() {
+		$(".btnAddContent").click(function(event) {
+            event.preventDefault();
 			$("#newContent")
                 .clearEnhance()
 				.append($("#sampleContent").html())
 				.enhance();
+            return false;
 		});
 	});
 

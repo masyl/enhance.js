@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0d362cd-1fa4-4f86-9d08-81d14e160535" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gruntfile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/qunit.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/qunit.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enhance.js" afterPath="$PROJECT_DIR$/src/enhance.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample.js" afterPath="$PROJECT_DIR$/src/sample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="enhance.js.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,19 +37,57 @@
       <file leaf-file-name="sample.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="26" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
+            <state line="40" column="12" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0" vertical-offset="8" max-vertical-offset="855">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enhance.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="enhance.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/enhance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="417" column="8" selection-start="12987" selection-end="12999" vertical-scroll-proportion="0.16044776" vertical-offset="6126" max-vertical-offset="6975">
+            <state line="116" column="50" selection-start="3975" selection-end="3975" vertical-scroll-proportion="0.0" vertical-offset="1761" max-vertical-offset="6975">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gruntfile.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="36" selection-start="182" selection-end="182" vertical-scroll-proportion="0.11015912" vertical-offset="0" max-vertical-offset="817">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="162" column="38" selection-start="6261" selection-end="6261" vertical-scroll-proportion="-26.166666" vertical-offset="1802" max-vertical-offset="2625">
+              <folding>
+                <marker date="1389067789000" expanded="true" signature="523:561" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="360">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="qunit.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/qunit.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="13" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3765">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,9 +104,9 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="0" selection-start="6085" selection-end="6085" vertical-scroll-proportion="-24.916666" vertical-offset="1682" max-vertical-offset="2475">
+            <state line="26" column="22" selection-start="721" selection-end="721" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="2490">
               <folding>
-                <marker date="1389064688000" expanded="true" signature="390:428" placeholder="..." />
+                <marker date="1389067755000" expanded="true" signature="390:428" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -71,7 +115,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="6" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+            <state line="3" column="13" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
               <folding />
             </state>
           </provider>
@@ -96,16 +140,19 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/README" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/sample.js" />
         <option value="$PROJECT_DIR$/src/enhance.js" />
+        <option value="$PROJECT_DIR$/src/sample.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/test/test.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/Gruntfile.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="182" />
+    <option name="x" value="433" />
     <option name="y" value="22" />
     <option name="width" value="1400" />
     <option name="height" value="940" />
@@ -165,6 +212,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enhance.js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enhance.js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -179,6 +240,12 @@
     <property name="options.lastSelected" value="web-ide.project.structure" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -229,7 +296,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="182" y="22" width="1400" height="940" extended-state="0" />
+    <frame x="433" y="22" width="1400" height="940" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -263,13 +330,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="6" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="50" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1620">
@@ -277,28 +337,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/test/qunit.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="0" selection-start="6085" selection-end="6085" vertical-scroll-proportion="-24.916666" vertical-offset="1682" max-vertical-offset="2475">
-          <folding>
-            <marker date="1389064688000" expanded="true" signature="390:428" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="26" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
+        <state line="21" column="13" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3765">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/enhance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="417" column="8" selection-start="12987" selection-end="12999" vertical-scroll-proportion="0.16044776" vertical-offset="6126" max-vertical-offset="6975">
+        <state line="116" column="50" selection-start="3975" selection-end="3975" vertical-scroll-proportion="0.0" vertical-offset="1761" max-vertical-offset="6975">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="12" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0" vertical-offset="8" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="22" selection-start="721" selection-end="721" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="2490">
+          <folding>
+            <marker date="1389067755000" expanded="true" signature="390:428" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="38" selection-start="6261" selection-end="6261" vertical-scroll-proportion="-26.166666" vertical-offset="1802" max-vertical-offset="2625">
+          <folding>
+            <marker date="1389067789000" expanded="true" signature="523:561" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="182" selection-end="182" vertical-scroll-proportion="0.11015912" vertical-offset="0" max-vertical-offset="817">
+          <folding />
         </state>
       </provider>
     </entry>
