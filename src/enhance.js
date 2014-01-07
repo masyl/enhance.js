@@ -64,12 +64,6 @@
  */
 
 
-if(typeof window.QUnit !== 'undefined'){
-    test( "Page Load :", function() {
-        ok( true, "Page has loaded Successfully!" );
-    });
-}
-
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.

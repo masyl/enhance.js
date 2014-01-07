@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0d362cd-1fa4-4f86-9d08-81d14e160535" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/enhance.js" afterPath="$PROJECT_DIR$/src/enhance.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/jquery-1.10.2.min.js" afterPath="$PROJECT_DIR$/libs/jquery-1.10.2.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="enhance.js.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,10 +36,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enhance.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="enhance.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/enhance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="309" column="31" selection-start="9822" selection-end="9822" vertical-scroll-proportion="0.0" vertical-offset="4536" max-vertical-offset="6975">
+            <state line="64" column="0" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.019206146" vertical-offset="0" max-vertical-offset="5940">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery-1.10.2.min.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/libs/jquery-1.10.2.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="74" selection-start="64284" selection-end="64284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -45,19 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jquery-1.10.2.min.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/libs/jquery-1.10.2.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="44" selection-start="125" selection-end="125" vertical-scroll-proportion="0.019206146" vertical-offset="0" max-vertical-offset="781">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="36" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+            <state line="6" column="36" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="495">
               <folding>
                 <marker date="1389068338000" expanded="true" signature="47:419" placeholder="{...}" />
               </folding>
@@ -68,7 +70,7 @@
       <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="49" selection-start="153" selection-end="153" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="2625">
+            <state line="5" column="49" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="2625">
               <folding>
                 <marker date="1389068704000" expanded="true" signature="524:562" placeholder="..." />
               </folding>
@@ -79,7 +81,7 @@
       <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="360">
+            <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="360">
               <folding />
             </state>
           </provider>
@@ -88,7 +90,7 @@
       <file leaf-file-name="qunit.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/qunit.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="13" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3765">
+            <state line="21" column="13" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="3765">
               <folding />
             </state>
           </provider>
@@ -106,7 +108,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="34" selection-start="392" selection-end="392" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="2490">
+            <state line="11" column="34" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2490">
               <folding>
                 <marker date="1389068710000" expanded="true" signature="391:429" placeholder="..." />
               </folding>
@@ -117,7 +119,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="13" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+            <state line="3" column="13" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="135">
               <folding />
             </state>
           </provider>
@@ -149,13 +151,13 @@
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/test/test.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/enhance.js" />
         <option value="$PROJECT_DIR$/libs/jquery-1.10.2.min.js" />
+        <option value="$PROJECT_DIR$/src/enhance.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="433" />
+    <option name="x" value="280" />
     <option name="y" value="22" />
     <option name="width" value="1400" />
     <option name="height" value="940" />
@@ -186,7 +188,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -249,14 +250,15 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="web-ide.project.structure" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -265,14 +267,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -283,15 +277,23 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -313,26 +315,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="433" y="22" width="1400" height="940" extended-state="0" />
+    <frame x="280" y="22" width="1400" height="940" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -347,6 +349,52 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/test/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="49" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="2625">
+          <folding>
+            <marker date="1389068704000" expanded="true" signature="524:562" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/qunit.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="13" selection-start="617" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="3765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="50" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="34" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2490">
+          <folding>
+            <marker date="1389068710000" expanded="true" signature="391:429" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="135">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="50" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1620">
@@ -377,7 +425,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="360">
+        <state line="2" column="19" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="360">
           <folding />
         </state>
       </provider>
@@ -393,7 +441,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="49" selection-start="153" selection-end="153" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="2625">
+        <state line="5" column="49" selection-start="153" selection-end="153" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="2625">
           <folding>
             <marker date="1389068704000" expanded="true" signature="524:562" placeholder="..." />
           </folding>
@@ -402,25 +450,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="34" selection-start="392" selection-end="392" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="2490">
+        <state line="11" column="34" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2490">
           <folding>
             <marker date="1389068710000" expanded="true" signature="391:429" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/enhance.js">
+    <entry file="file://$PROJECT_DIR$/libs/jquery-1.10.2.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="309" column="31" selection-start="9822" selection-end="9822" vertical-scroll-proportion="0.0" vertical-offset="4536" max-vertical-offset="6975">
+        <state line="5" column="74" selection-start="64284" selection-end="64284" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs/jquery-1.10.2.min.js">
+    <entry file="file://$PROJECT_DIR$/src/enhance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="44" selection-start="125" selection-end="125" vertical-scroll-proportion="0.019206146" vertical-offset="0" max-vertical-offset="781">
+        <state line="64" column="0" selection-start="2036" selection-end="2036" vertical-scroll-proportion="0.019206146" vertical-offset="0" max-vertical-offset="5940">
           <folding />
         </state>
       </provider>
