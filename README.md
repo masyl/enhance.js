@@ -1,19 +1,40 @@
 
-Enhance.js
+#Enhance.js
 
-A javascript library for progressive enhancement
+A javascript library for progressive enhancement.
+Use to organise code and prevent error to affect other function.
+- Ready to use with AMD --> RequireJs
+- Ready to be use with QUnit testing if QUnit script is added to the page.
 
 Usage:
 
-Apply all enhancements to the whole document
+###Apply all enhancements to the whole document
+####HTML:
+<div class="enhance" data-enhance="init">
+    <div class="enhance" data-enhance="map"></div>
+</div>
+
+<div class="enhance" data-enhance="otherWidget"></div>
+
+<div class="enhance" data-enhance="test"></div>
+
 ```sh
-    jQuery(document).enhance();
 ```
-Apply all enhancements to a specific part of the page (after ajax or dhtml)
+####Javascript:
+```sh
+    $.enhance(Function.init, { id: "init", title: "Init flags"});
+    $.enhance(Widgets.map, { id: "map", title: "Map Initialisation", emitter: emitter});
+    $.enhance(Widgets.otherWidget, { id: "otherWidget", title: "otherWidget on homepage", emitter: emitter});
+    $.enhance(Widgets.otherWidget, { id: "otherWidget", title: "otherWidget on homepage", emitter: emitter});
+    $.enhance(Widgets.test1, { group: "test", title: "test1", emitter: emitter});
+    $.enhance(Widgets.test2, { group: "test", title: "test1", emitter: emitter});
+    $(document).enhance();
+```
+###Apply all enhancements to a specific part of the page (after ajax or dhtml)
 ```sh
     jQuery("#pageSection1").enhance();
 ```
-Register a new enhancement by id
+###Register a new enhancement by id
 ```sh
     jQuery.enhance(function (targets) {
         // some code here...
@@ -22,7 +43,7 @@ Register a new enhancement by id
         title: "adding ajax behavior on paging"
     });
 ```
-Register a new enhancement by group
+###Register a new enhancement by group
 ```sh
     jQuery.enhance(function (targets) {
         var options = this.option.options;
@@ -30,13 +51,13 @@ Register a new enhancement by group
             $(this).doSomething(options);
         );
     }, {
-        id: "ajaxPagingBehavior",
         title: "adding ajax behavior on paging"
         group: "ajax"
         options: { variable : "test" }
     });
 ```
-Clear Enhancement for this element
+###Clear Enhancement for this element
+```sh
     jQuery("#element").clearEnhance();
 ```
 
