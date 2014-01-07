@@ -1,12 +1,19 @@
 
 #Enhance.js
 
-A javascript library for progressive enhancement.
-Use to organise code and prevent error to affect other function.
+Enhance.js is a lightweight javascript utility that helps you organize your code to take advantages of the progressive enhancement approach.
+
+By using enhance.js you gain:
+- Better code structure and readability
+- Re-apply all enhancements to new page content (ajax/dhtml)
+- Automatic logging and timing for optimization
+- Failed enhancement cant break the whole site
+- Failures are logged appropriatly for debugging
+Also Contain:
 - Ready to use with AMD --> RequireJs
 - Ready to be use with QUnit testing if QUnit script is added to the page.
 
-Usage:
+##Usage:
 
 ###Apply all enhancements to the whole document
 ####HTML:
@@ -70,7 +77,7 @@ Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
 * 				Alexandre Paquette - alexandre.paquette@nurun.com, alexandre.paquette@nadrox.com
 *				Anthony Bucci - anthony.bucci@nurun.com
 * 				Etienne Dion - etienne.dion@nurun.com
-* Last Upodate : January 6, 2014
+* Last Update : January 6, 2014
 
 Upcomming features:
 - Provide a callback for when enhancement are complete

@@ -30,7 +30,7 @@
 	}
 
 	$.enhance(enhancementIsMoving, {
-		id: "isMoving",
+		id: "letsMove",
 		title: "adding some nice movement"
 	});
 
@@ -40,6 +40,7 @@
 		// Run enhancements again for the newly added content
 		$("#btnAddContent").click(function() {
 			$("#newContent")
+                .clearEnhance()
 				.append($("#sampleContent").html())
 				.enhance();
 		});

@@ -1,67 +1,75 @@
 /* 
-* Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
-* Date : 2010
-* Modified By: Michel Gratton - michel.gratton@nurun.com, michel.gratton@nadrox.com
-* 				Billy Rancourt - billy.rancourt@nurun.com
-* 				Alexandre Paquette - alexandre.paquette@nurun.com, alexandre.paquette@nadrox.com
-*				Anthony Bucci - anthony.bucci@nurun.com
-* 				Etienne Dion - etienne.dion@nurun.com
-*
-* Modified Date : March 22, 2013
-	Enhance.js
+ * Author : Mathieu Sylvain - mathieu.sylvain@nurun.com
+ * Date : 2010
+ * Modified By: Michel Gratton - michel.gratton@nurun.com, michel.gratton@nadrox.com
+ * 				Billy Rancourt - billy.rancourt@nurun.com
+ * 				Alexandre Paquette - alexandre.paquette@nurun.com, alexandre.paquette@nadrox.com
+ *				Anthony Bucci - anthony.bucci@nurun.com
+ * 				Etienne Dion - etienne.dion@nurun.com
+ *
+ * Modified Date : March 22, 2013
+ Enhance.js
 
-	A javascript library for progressive enhancement
+ A javascript library for progressive enhancement
 
-	Usage:
-		 // Apply all enhancements to the whole document
-		jQuery(document).enhance();
+ Usage:
+ // Apply all enhancements to the whole document
+ jQuery(document).enhance();
 
-		 // Apply all enhancements to a specific part of the page (after ajax or dhtml)
- 		jQuery("#pageSection1").enhance();
+ // Apply all enhancements to a specific part of the page (after ajax or dhtml)
+ jQuery("#pageSection1").enhance();
 
-		// Register a new enhancement by id
-		jQuery.enhance(function (targets) {
-			// some code here...
-		}, {
-			id: "ajaxPagingBehavior",
-			title: "adding ajax behavior on paging"
-		});
+ // Register a new enhancement by id
+ jQuery.enhance(function (targets) {
+ // some code here...
+ }, {
+ id: "ajaxPagingBehavior",
+ title: "adding ajax behavior on paging"
+ });
 
-		// Register a new enhancement by group
-		jQuery.enhance(function (targets) {
-			// some code here...
-		}, {
-			id: "ajaxPagingBehavior",
-			title: "adding ajax behavior on paging"
-			group: "ajax"
-		});
-		
-		// Clear Enhancement for this element
-		jQuery("#element").clearEnhance();
-		
+ // Register a new enhancement by group
+ jQuery.enhance(function (targets) {
+ // some code here...
+ }, {
+ id: "ajaxPagingBehavior",
+ title: "adding ajax behavior on paging"
+ group: "ajax"
+ });
+
+ // Clear Enhancement for this element
+ jQuery("#element").clearEnhance();
 
 
-Upcomming features:
-- Provide a callback for when enhancement are complete
-- Specify a method to test if requirements are met
 
-* October 13, 2011 Update - AP
-* Added "elems" attribute of the enhancement object which is an array of the 
-* elements where the same data-enhance attribute is applied.
-* Also enhanced elements are flagged so the same enchancement is not runned twice
-*  
-* November 8, 2012 Update - ED
-* -Clear Enhancement
-* -Console log for already enhanced elements 
-* -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
-* -Grouped log to clean the console
-* -Log time and grouped log for ie
-* 
-* September 9, 2013 Update - ED
-* - Add Support for AMD / Require.js
-* January 6, 2014 Update - ED
-* - Add Support for QUnit 
-*/
+ Upcomming features:
+ - Provide a callback for when enhancement are complete
+ - Specify a method to test if requirements are met
+
+ * October 13, 2011 Update - AP
+ * Added "elems" attribute of the enhancement object which is an array of the
+ * elements where the same data-enhance attribute is applied.
+ * Also enhanced elements are flagged so the same enchancement is not runned twice
+ *
+ * November 8, 2012 Update - ED
+ * -Clear Enhancement
+ * -Console log for already enhanced elements
+ * -Remove data-enhance for enhanced elements (enhance-***-applied become the only flag to determine if elements hanve already been enhance) so it is easy to remove this class to re-enhance element
+ * -Grouped log to clean the console
+ * -Log time and grouped log for ie
+ *
+ * September 9, 2013 Update - ED
+ * - Add Support for AMD / Require.js
+ * January 6, 2014 Update - ED
+ * - Add Support for QUnit
+ */
+
+
+if(typeof window.QUnit !== 'undefined'){
+    test( "Page Load :", function() {
+        ok( true, "Page has loaded Successfully!" );
+    });
+}
+
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -92,16 +100,27 @@ Upcomming features:
         console = {assert:function(){},clear:function(){},count:function(){},debug:function(){},dir:function(){},dirxml:function(){},error:function(){},exception:function(){},group:function(){},groupCollapsed:function(){},groupEnd:function(){},info:function(){},log:function(){},memoryProfile:function(){},memoryProfileEnd:function(){},profile:function(){},profileEnd:function(){},table:function(){},time:function(){},timeEnd:function(){},timeStamp:function(){},trace:function(){},warn:function(){}};
     }
 
+    if(typeof window.QUnit !== 'undefined'){
+        var originalerror = console.error;
+        console.error = function (msg, arguments) {
+
+            test( "Console Error :", function() {
+                ok( false, "Error: "+ msg );
+            });
+
+            originalerror.apply(console, msg, arguments);
+        };
+    }
     function logGroup(group, elem, status){
         elem = elem || "";
 
         if(hasConsoleTime && typeof window.QUnit === 'undefined'){
 
-                if(status === "start"){
-                    console.groupCollapsed(group, elem);
-                } else {
-                    console.groupEnd();
-                }
+            if(status === "start"){
+                console.groupCollapsed(group, elem);
+            } else {
+                console.groupEnd();
+            }
 
 
         } else {
@@ -396,6 +415,7 @@ Upcomming features:
 
             }
         }
+        return this;
     }
 
     function array_merge(first, second, byVal) {
