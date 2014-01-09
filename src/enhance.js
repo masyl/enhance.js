@@ -195,8 +195,9 @@
             return false;
         }
 
+
         // replace asterisk with actual global group name
-        list = (!$.isArray(gc) ? $.trim(gc).split(/\s+/) : gc);
+        list = $.trim(gc).split(/\s+/);
         globalIndex = $.inArray('*', list);
         if (globalIndex != -1) {
             list[globalIndex] = 'global';
@@ -217,9 +218,12 @@
             var g, i, eni;
 
             g = getGroupeContext($(this).data(enhOptions.dataHandler) || "");
+
             if(g) {
-                for(i=0;g[i];i++){
+                for(i=0; i < g.length;i++){
+                    
                     group = enhancementGroups[g[i]];
+                    
                     if(typeof group !== "undefined" ) {
                         execGroups[g[i]]=g[i];
 
@@ -246,7 +250,7 @@
                         }
                     } else {
                         if(typeof window.QUnit === 'undefined'){
-                            console.warn('No enhancement "' + g + '" found.');
+                            console.warn('No enhancement "' + g[i] + '" found.');
                         }
                     }
                 }
