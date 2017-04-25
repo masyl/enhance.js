@@ -91,8 +91,8 @@
         },
         timers = {},
         counter = 0,
-        errors = 0;
-    indentForIE = "";
+        errors = 0,
+        indentForIE = "";
 
     if(!hasConsoleTime){
         indentForIE = "      ";
