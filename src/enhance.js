@@ -104,11 +104,11 @@
     if(typeof window.QUnit !== 'undefined'){
         if(hasConsoleError) {
             var originalerror = console.error;
-            console.error = function (msg, arguments) {
+            console.error = function (msg, args) {
                 test( "Console Error :", function() {
                     ok( false, "Error: "+ msg );
                 });
-                originalerror.apply(console, msg, arguments);
+                originalerror.apply(console, msg, args);
             }
         }
     }
