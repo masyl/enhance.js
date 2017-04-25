@@ -74,7 +74,14 @@
     }
 }(function ($) {
     var hasConsole = typeof console !== "undefined",
+        hasConsoleLog = hasConsole && typeof console.log !== "undefined",
         hasConsoleTime = hasConsole && typeof console.time !== "undefined",
+        hasConsoleTimeEnd = hasConsole && typeof console.timeEnd !== "undefined",
+        hasConsoleGroupCollapsed = hasConsole && typeof console.groupCollapsed !== "undefined",
+        hasConsoleGroupEnd = hasConsole && typeof console.groupEnd !== "undefined",
+        hasConsoleDir = hasConsole && typeof console.dir !== "undefined",
+        hasConsoleError = hasConsole && typeof console.error !== "undefined",
+        hasConsoleWarn = hasConsole && typeof console.warn !== "undefined",
         enhancements = [],
         enhancementGroups = {global:[]},
         enhanceCnt = 0, // Use for auto id
@@ -95,15 +102,15 @@
     }
 
     if(typeof window.QUnit !== 'undefined'){
-        var originalerror = console.error;
-        console.error = function (msg, arguments) {
-
-            test( "Console Error :", function() {
-                ok( false, "Error: "+ msg );
-            });
-
-            originalerror.apply(console, msg, arguments);
-        };
+        if(hasConsoleError) {
+            var originalerror = console.error;
+            console.error = function (msg, arguments) {
+                test( "Console Error :", function() {
+                    ok( false, "Error: "+ msg );
+                });
+                originalerror.apply(console, msg, arguments);
+            }
+        }
     }
     function logGroup(group, elem, status){
         elem = elem || "";
@@ -111,9 +118,9 @@
         if(hasConsoleTime && typeof window.QUnit === 'undefined'){
 
             if(status === "start"){
-                console.groupCollapsed(group, elem);
+                if(hasConsoleGroupCollapsed) console.groupCollapsed(group, elem);
             } else {
-                console.groupEnd();
+                if(hasConsoleGroupEnd) console.groupEnd();
             }
 
 
@@ -131,7 +138,7 @@
                     selector += "." + $.trim(classNames).replace(/\s/gi, ".");
                 }
 
-                console.log(group, selector);
+                if(hasConsoleLog) console.log(group, selector);
 
             }
         }
@@ -162,10 +169,10 @@
     }
     function logTime(id){
 
-        if(hasConsoleTime && typeof window.QUnit === 'undefined'){
+        if(hasConsoleTime && hasConsoleTimeEnd && typeof window.QUnit === 'undefined'){
             console.timeEnd(id);
         } else {
-            console.log(id +" : "+time(id)+"ms");
+            if(hasConsoleLog) console.log(id +" : "+time(id)+"ms");
         }
 
     }
@@ -221,9 +228,9 @@
 
             if(g) {
                 for(i=0; i < g.length;i++){
-                    
+
                     group = enhancementGroups[g[i]];
-                    
+
                     if(typeof group !== "undefined" ) {
                         execGroups[g[i]]=g[i];
 
@@ -235,7 +242,7 @@
                                 enhs[group[eni].id].elems = [];
                                 enhs[group[eni].id].groupId = index;
                             } else {
-                                //console.warn('Already in a group ', enhs[group[eni].id]);
+                                if(hasConsoleWarn) console.warn('Already in a group ', enhs[group[eni].id]);
                             }
 
 
@@ -244,13 +251,13 @@
                                 enhs[group[eni].id].groupId = index;
                             } else {
                                 if(typeof window.QUnit === 'undefined'){
-                                    console.warn('Already applied enhancement ', enhs[group[eni].id]);
+                                    if(hasConsoleWarn) console.warn('Already applied enhancement ', enhs[group[eni].id]);
                                 }
                             }
                         }
                     } else {
                         if(typeof window.QUnit === 'undefined'){
-                            console.warn('No enhancement "' + g[i] + '" found.');
+                            if(hasConsoleWarn) console.warn('No enhancement "' + g[i] + '" found.');
                         }
                     }
                 }
@@ -262,11 +269,11 @@
         logGroup("--- Enhancement Detail ",null, "start");
 
         /*** DEBUG ***/
-            //console.log('enh groups : ', _enG);
+        if(hasConsoleLog)  {
+            console.log("All Enhancements to apply : ");
+        }
 
-        console.log("All Enhancements to apply : ");
-
-        if(console.dir && typeof window.QUnit === 'undefined') {
+        if(hasConsoleDir && typeof window.QUnit === 'undefined') {
             console.dir(enhs);
         }
 
@@ -304,8 +311,8 @@
                 } catch(e) {
                     errors = errors+1;
                     if (hasConsole){
-                        console.error("Enhancement failed: " + _this.title);
-                        if(console.dir) {
+                        if(hasConsoleError) console.error("Enhancement failed: " + _this.title);
+                        if(hasConsoleDir) {
                             if(typeof window.QUnit === 'undefined'){
                                 console.dir({
                                     "exception": e,
@@ -353,10 +360,10 @@
         logGroup("",null, "end");
         logGroup("",null, "end");
         if(typeof window.QUnit === 'undefined'){
-            if(errors){
-                console.error("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+            if(hasConsoleError){
+                //console.error("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
             } else {
-                console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
+                if(hasConsoleLog) console.log("--- Nb of elements enhanced :", counter, "; Nb of errors :", errors);
             }
 
             logTime("--- Enhanced Time");
